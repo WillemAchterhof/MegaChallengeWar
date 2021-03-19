@@ -7,8 +7,9 @@ namespace MegaChallengeWar
 {
 	public class CardDeck
 	{
-		public List<string> PlayCards = new List<string>();
-		public CardDeck()
+		public List<string> PlayCards { get; set; }
+
+		private void CreateCardDeck()
 		{
 		
 			List<string> CardColor = new List<string>();
