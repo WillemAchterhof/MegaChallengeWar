@@ -5,12 +5,13 @@ using System.Web;
 
 namespace MegaChallengeWar
 {
-	public class CardDeck
+	public static class CardDeck
 	{
-		public List<string> PlayCards = new List<string>();
-		private void CreateCardDeck()
+		public static List<string> CreateDeck()
 		{
-		
+			
+			List<string> PlayCards = new List<string>();
+			
 			List<string> CardColor = new List<string>();
 			CardColor.Add("Clubs");
 			CardColor.Add("Diamonds");
@@ -34,7 +35,8 @@ namespace MegaChallengeWar
 					PlayCards.Add(string.Format($"{cardValue} of {cardColor}"));
 				}
 			}
+
+			return PlayCards;
 		}
 	}
 }
-		

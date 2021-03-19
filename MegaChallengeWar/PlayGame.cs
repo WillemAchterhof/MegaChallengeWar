@@ -7,5 +7,8 @@ namespace MegaChallengeWar
 {
 	public class PlayGame
 	{
+		private void Game()
+		{
+		}
 	}
 }
