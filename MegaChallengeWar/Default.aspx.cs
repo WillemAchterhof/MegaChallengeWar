@@ -16,15 +16,13 @@ namespace MegaChallengeWar
 		protected void okButton_Click(object sender, EventArgs e)
 		{
 			string result = string.Empty;
-			CardDeck playCards = new CardDeck();
 
-			List<string> PlayingCards = playCards.PlayCards;
-			foreach (string playCard in PlayingCards)
-			{
-				result += string.Format($"{playCard}<br/>");
-			}
+			CardDeck.CreateDeck();
 
-			resultLabel.Text = result;
-		}
+            result = PlayGame.Game();
+
+
+            resultLabel.Text = result;
+        }
 	}
 }

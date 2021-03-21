@@ -8,6 +8,6 @@ namespace MegaChallengeWar
 	public class Player
 	{
 		public string Name { get; set; }
-		public List<CardDeck> Hand { get; set; }
+		public List<string> Hand { get;  set; }
 	}
 }
