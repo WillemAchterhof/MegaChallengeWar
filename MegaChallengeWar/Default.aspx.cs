@@ -16,10 +16,11 @@ namespace MegaChallengeWar
 		protected void okButton_Click(object sender, EventArgs e)
 		{
 			string result = string.Empty;
+			CardDeck PlayDeck = new CardDeck();
 
-			CardDeck.CreateDeck();
+			PlayDeck.Create();
 
-            result = PlayGame.Game();
+            result = PlayGame.Game(PlayDeck);
 
 
             resultLabel.Text = result;
