@@ -14,13 +14,12 @@ namespace MegaChallengeWar
 
 		public string PlayerHand()
 		{
-			string _playerHand =string.Empty;
+			string _playerHand = string.Empty;
 
 			foreach (string card in this.Hand)
 			{
-				_playerHand += string.Format($"{this.Name} - {card}<br />");
+				_playerHand += Display.PlayerHand(this.Name, card);
 			}
-			
 			return _playerHand;
 		}
 	}

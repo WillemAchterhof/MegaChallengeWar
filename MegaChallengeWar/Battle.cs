@@ -7,18 +7,26 @@ namespace MegaChallengeWar
 {
 	public static class Battle
 	{
+		private static string _result = string.Empty;
 		public static string Go(Player playerOne, Player playerTwo)
 		{
-			string _result = string.Empty;
+			List<string> Bounty = new List<string>();
 
-			_result += "<h2>Battle Begin</h2>";
-
-			for (int counter = 1; counter < 30; counter++)
+			_result += Display.BattleBegin();
+			int counter = 0;
+			while (counter < 10 && playerOne.Hand.Count > 0 && playerTwo.Hand.Count > 0)
 			{
-				playerOne.DrawnCard = playerOne.Hand.ElementAt(0);
-				playerTwo.DrawnCard = playerTwo.Hand.ElementAt(0);
+				Bounty.Add(playerOne.Hand.ElementAt(counter))w
+				Bountw.Add(playerTwo.Hand.ElementAt(counter));
 
-				_result += BattleCards(playerOne.DrawnCard, playerTwo.DrawnCard);
+				playerOne.Hand.RemoveAt(counter);
+				playerTwo.Hand.RemoveAt(counter);
+
+				_result += CheckResult(Bounty);
+
+				_result += Display.BattleCards(Bounty);
+
+				//counter++;
 			}
 
 			_result += string.Format($"");
@@ -26,15 +34,8 @@ namespace MegaChallengeWar
 			return _result;
 		}
 
-		private static string BattleCards(string cardOne, string cardTwo)
+		private static string CheckResult(List<string> bounty)
 		{
-			string _result = string.Empty;
-			
-			_result += string.Format($"Battle Cards: {cardOne} versus  {cardTwo}" +
-				$"<br />Bounty..." +
-				$"<br />{cardOne}<br />{cardTwo}<br /><br />");
-
-
 			return _result;
 		}
 	}

@@ -9,9 +9,7 @@ namespace MegaChallengeWar
     {
         public static string Game(CardDeck playDeck)
         {
-            Random random = new Random();
             string result = string.Empty;
-
 
             Player playerOne = new Player();
             Player playerTwo = new Player();

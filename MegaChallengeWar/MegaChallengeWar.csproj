@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="Battle.cs" />
     <Compile Include="CardDeck.cs" />
+    <Compile Include="Display.cs" />
     <Compile Include="PlayGame.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

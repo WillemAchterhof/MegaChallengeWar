@@ -8,6 +8,7 @@ namespace MegaChallengeWar
 	public  class CardDeck
 	{
 		public List<string> PlayCards = new List<string>();
+		private string _result = string.Empty;
         
 		public void Create()
 		{
@@ -39,18 +40,14 @@ namespace MegaChallengeWar
 		Random random = new Random();
 		public string DealCards(Player playerOne, Player playerTwo)
 		{
-			string _result = "<h2>Dealing cards... </h2>";
+			 _result = Display.DealCards();
 			
 			while (this.PlayCards.Count > 0)
 			{
-				if ( playerOne.Hand.Count == playerTwo.Hand.Count)
-				{
-					_result += giveCardto(playerOne);
-									}
-				else
-				{
-					_result += giveCardto(playerTwo);
-				}
+				if ( playerOne.Hand.Count == playerTwo.Hand.Count) {
+					_result += giveCardto(playerOne); }
+				else {
+					_result += giveCardto(playerTwo); }
 			}
 			return _result;
 		}
@@ -62,9 +59,8 @@ namespace MegaChallengeWar
 			
 			player.Hand.Add(_card);
 			this.PlayCards.RemoveAt(_cardNumber);
-			string result = string.Format($"{player.Name} is dealt the {_card}<br />");
-
-			return result;
+			_result = Display.CardDealt(player, _card);
+			return _result;
 		}
 	}
 }
