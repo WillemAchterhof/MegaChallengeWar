@@ -8,9 +8,9 @@ namespace MegaChallengeWar
 	public class Player
 	{
 		public string Name { get; set; }
-		public int CardCount { get; set; }
-		public string DrawnCard { get; set; }
+		public string BatleCard { get; set; }
 		public List<string> Hand { get;  set; }
+		public bool Won { get; set; }
 
 		public string PlayerHand()
 		{

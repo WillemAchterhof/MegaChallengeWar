@@ -18,7 +18,7 @@ namespace MegaChallengeWar
             playerTwo.Name = "Mark";
             playerTwo.Hand = new List<string>();
 
-            result = playDeck.DealCards(playerOne, playerTwo);
+            result += playDeck.DealCards(playerOne, playerTwo);
             result += Battle.Go(playerOne, playerTwo);
 
             return result; 

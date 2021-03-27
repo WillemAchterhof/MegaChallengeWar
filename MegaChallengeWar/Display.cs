@@ -19,15 +19,36 @@ namespace MegaChallengeWar
 		{
 			return "<h2>Battle Begin</h2>";
 		}
-		public static string BattleCards(List<string> bounty)
+		public static string BattleCards(Player playerOne, Player playerTwo)
 		{
-			return string.Format($"Battle Cards: {bounty.ElementAt(0)} versus  {bounty.ElementAt(1)}" +
-			$"<br />Bounty..." +
-			$"<br />{bounty.ElementAt(0)}<br />{bounty.ElementAt(1)}<br /><br />");
+			return string.Format($"Battle Cards: {playerOne.BatleCard} versus  {playerTwo.BatleCard}<br />");
+		}
+		public static string Bounty(List<string> bounty)
+		{
+			string _result = "Bounty...<br />"; 
+			foreach (string _card in bounty)
+			{
+				_result += string.Format($"{_card}<br />");
+			}
+			return _result;
 		}
 		public static string PlayerHand(string name, string card)
 		{
 			return string.Format($"{name} - {card}<br />");
+		}
+		public static string War()
+		{
+			return "********WAR**********<br />";
+		}
+		public static string Winner(Player playerOne, Player playerTwo)
+		{
+			string _winner = string.Empty;
+			if (playerOne.Won)
+			{
+				_winner = playerOne.Name;
+			}
+			else { _winner = playerTwo.Name; }
+			return string.Format($"<br />Winner: {_winner}!<br /><br />");
 		}
 	}
 }

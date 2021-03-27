@@ -19,7 +19,7 @@ namespace MegaChallengeWar
 			CardColor.Add("Spades");
 
 			List<string> CardValue = new List<string>();
-			for (int count = 1; count <= 9; count++)
+			for (int count = 1; count <= 10; count++)
 			{
 				CardValue.Add(count.ToString());
 			}

@@ -12,31 +12,92 @@ namespace MegaChallengeWar
 		{
 			List<string> Bounty = new List<string>();
 
-			_result += Display.BattleBegin();
 			int counter = 0;
-			while (counter < 10 && playerOne.Hand.Count > 0 && playerTwo.Hand.Count > 0)
+			while (counter < 40 && playerOne.Hand.Count > 0 && playerTwo.Hand.Count > 0)
 			{
-				Bounty.Add(playerOne.Hand.ElementAt(counter))w
-				Bountw.Add(playerTwo.Hand.ElementAt(counter));
+				playerOne.Won = false;
+				playerTwo.Won = false;
 
-				playerOne.Hand.RemoveAt(counter);
-				playerTwo.Hand.RemoveAt(counter);
+				Bounty.Add(playerOne.Hand.ElementAt(0));
+				Bounty.Add(playerTwo.Hand.ElementAt(0));
 
-				_result += CheckResult(Bounty);
+				playerOne.BatleCard = Bounty.ElementAt(0);
+				playerTwo.BatleCard = Bounty.ElementAt(1);
 
-				_result += Display.BattleCards(Bounty);
+				_result += Display.BattleBegin();
+				_result += Display.BattleCards(playerOne, playerTwo);
+				CheckWinner(playerOne, playerTwo, Bounty);
+				
+				playerOne.Hand.RemoveAt(0);
+				playerTwo.Hand.RemoveAt(0);
 
-				//counter++;
+				if (!playerOne.Won && !playerTwo.Won)
+				{
+					War(playerOne, playerTwo, Bounty);
+					_result += Display.War();
+
+					playerOne.BatleCard = Bounty.ElementAt(6);
+					playerTwo.BatleCard = Bounty.ElementAt(7);
+					CheckWinner(playerOne, playerTwo, Bounty);
+				}
+				
+				_result += Display.Bounty(Bounty);
+				_result += Display.Winner(playerOne, playerTwo);
+
+				Bounty.Clear();
+				counter++;
 			}
 
-			_result += string.Format($"");
+			_result += string.Format($"{playerOne.Hand.Count}</br>{playerTwo.Hand.Count}");
 
 			return _result;
 		}
 
-		private static string CheckResult(List<string> bounty)
+		private static void CheckWinner(Player playerOne, Player playerTwo, List<string> bounty)
 		{
-			return _result;
+			int _cardValueOne = CardValue(playerOne.BatleCard);
+			int _cardValueTwo = CardValue(playerTwo.BatleCard);
+
+			if (_cardValueOne > _cardValueTwo)
+			{
+				foreach (string _card in bounty)
+				{ playerOne.Hand.Add(_card); }
+				playerOne.Won = true;
+			}
+			else if (_cardValueOne < _cardValueTwo)
+			{
+				foreach (string _card in bounty)
+				{ playerTwo.Hand.Add(_card); }
+				playerTwo.Won = true;
+			}
+			return;
+		}
+
+		private static void War(Player playerOne, Player playerTwo, List<string> Bounty)
+		{
+			for (int counter = 0; counter < 3 ; counter++)
+			{
+			Bounty.Add(playerOne.Hand.ElementAt(0));
+			Bounty.Add(playerTwo.Hand.ElementAt(0));
+
+			playerOne.Hand.RemoveAt(0);
+			playerTwo.Hand.RemoveAt(0);
+			}
+		}
+
+		private static int CardValue(string card)
+		{
+			string _card = card.Substring(0,2).Trim();
+			bool parsed = int.TryParse(_card, out int _cardValue);
+			if (!parsed)
+			{
+				if (_card.ToUpper() == "JA") { _cardValue = 11; }
+				if (_card.ToUpper() == "QU") { _cardValue = 12; }
+				if (_card.ToUpper() == "KI") { _cardValue = 13; }
+				if (_card.ToUpper() == "AC") { _cardValue = 14; }
+			}
+
+			return _cardValue;
 		}
 	}
 }

@@ -20,7 +20,7 @@ namespace MegaChallengeWar
 
 			PlayDeck.Create();
 
-            result = PlayGame.Game(PlayDeck);
+            result += PlayGame.Game(PlayDeck);
 
 
             resultLabel.Text = result;
