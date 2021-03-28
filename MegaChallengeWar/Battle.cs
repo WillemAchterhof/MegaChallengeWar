@@ -10,45 +10,53 @@ namespace MegaChallengeWar
 		private static string _result = string.Empty;
 		public static string Go(Player playerOne, Player playerTwo)
 		{
+			_result += Display.BattleBegin();
+
 			List<string> Bounty = new List<string>();
 
 			int counter = 0;
 			while (counter < 40 && playerOne.Hand.Count > 0 && playerTwo.Hand.Count > 0)
 			{
-				playerOne.Won = false;
-				playerTwo.Won = false;
-
 				Bounty.Add(playerOne.Hand.ElementAt(0));
 				Bounty.Add(playerTwo.Hand.ElementAt(0));
 
 				playerOne.BatleCard = Bounty.ElementAt(0);
 				playerTwo.BatleCard = Bounty.ElementAt(1);
 
-				_result += Display.BattleBegin();
 				_result += Display.BattleCards(playerOne, playerTwo);
 				CheckWinner(playerOne, playerTwo, Bounty);
 				
 				playerOne.Hand.RemoveAt(0);
 				playerTwo.Hand.RemoveAt(0);
 
-				if (!playerOne.Won && !playerTwo.Won)
+				while (!playerOne.Won && !playerTwo.Won)
 				{
+					int _counter = 6;
 					War(playerOne, playerTwo, Bounty);
 					_result += Display.War();
 
-					playerOne.BatleCard = Bounty.ElementAt(6);
-					playerTwo.BatleCard = Bounty.ElementAt(7);
+					playerOne.BatleCard = Bounty.ElementAt(_counter);
+					playerTwo.BatleCard = Bounty.ElementAt(_counter + 1);
+					_result += Display.BattleCards(playerOne, playerTwo);
 					CheckWinner(playerOne, playerTwo, Bounty);
+					_counter += 3;
 				}
 				
 				_result += Display.Bounty(Bounty);
 				_result += Display.Winner(playerOne, playerTwo);
 
 				Bounty.Clear();
+				playerOne.Won = false;
+				playerTwo.Won = false;
 				counter++;
 			}
+			if (playerOne.Hand.Count > playerTwo.Hand.Count)
+			{ playerOne.Won = true; }
+			else { playerTwo.Won = true; }
 
-			_result += string.Format($"{playerOne.Hand.Count}</br>{playerTwo.Hand.Count}");
+			_result += string.Format($"{playerOne.Name}:{playerOne.Hand.Count}" +
+				$"</br>{playerTwo.Name}:{playerTwo.Hand.Count}" +
+				$"</br>{Display.Winner(playerOne, playerTwo)}");
 
 			return _result;
 		}

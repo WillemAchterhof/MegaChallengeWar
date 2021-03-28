@@ -28,7 +28,7 @@ namespace MegaChallengeWar
 			string _result = "Bounty...<br />"; 
 			foreach (string _card in bounty)
 			{
-				_result += string.Format($"{_card}<br />");
+				_result += string.Format($"&nbsp;&nbsp;{_card}<br />");
 			}
 			return _result;
 		}
@@ -48,7 +48,7 @@ namespace MegaChallengeWar
 				_winner = playerOne.Name;
 			}
 			else { _winner = playerTwo.Name; }
-			return string.Format($"<br />Winner: {_winner}!<br /><br />");
+			return string.Format($"<strong>Winner: {_winner}!</strong><br /><br />");
 		}
 	}
 }
