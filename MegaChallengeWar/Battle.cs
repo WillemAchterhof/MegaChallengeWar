@@ -50,6 +50,7 @@ namespace MegaChallengeWar
 				playerTwo.Won = false;
 				counter++;
 			}
+
 			if (playerOne.Hand.Count > playerTwo.Hand.Count)
 			{ playerOne.Won = true; }
 			else { playerTwo.Won = true; }
