@@ -15,7 +15,8 @@ namespace MegaChallengeWar
 
 		protected void okButton_Click(object sender, EventArgs e)
 		{
-			string result = string.Empty;
+			resultLabel.Text = string.Empty;
+
 			CardDeck PlayDeck = new CardDeck();
 
 			PlayDeck.Create();
